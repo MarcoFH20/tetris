@@ -25,8 +25,49 @@ canvas {
 	border-radius: 16px;
 	box-shadow: 0 8px 32px #000a, 0 0 0 4px #222b;
 	transition: box-shadow 0.2s;
+	max-width: 98vw;
+	height: auto;
 }
 canvas:focus {
 	outline: 2px solid #00e5ff;
 	box-shadow: 0 0 0 4px #00e5ff88, 0 8px 32px #000a;
+}
+
+.canvas-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mobile-controls {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin: 18px 0 0 0;
+}
+.mobile-controls button {
+	font-size: 2rem;
+	padding: 10px 18px;
+	border-radius: 10px;
+	border: none;
+	background: #222;
+	color: #fff;
+	box-shadow: 0 2px 8px #0005;
+	transition: background 0.2s, transform 0.1s;
+}
+.mobile-controls button:active {
+	background: #00e5ff;
+	color: #111;
+	transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+	h1 {
+		font-size: 1.2rem;
+	}
+	.mobile-controls button {
+		font-size: 1.3rem;
+		padding: 7px 10px;
+	}
 }

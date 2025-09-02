@@ -141,6 +141,8 @@ function moverAbajo() {
 
 actualizar();
 
+
+// Controles de teclado
 document.addEventListener('keydown', (event) => {
 	if (event.key === 'ArrowDown') {
 		moverAbajo();
@@ -160,4 +162,41 @@ document.addEventListener('keydown', (event) => {
 		if (colision(tablero, pieza)) pieza.matriz = anterior;
 		dibujar();
 	}
+});
+
+// Controles táctiles
+function botonMovil(id, accion) {
+	const btn = document.getElementById(id);
+	if (btn) {
+		btn.addEventListener('touchstart', function(e) {
+			e.preventDefault();
+			accion();
+		});
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+			accion();
+		});
+	}
+}
+
+botonMovil('left', () => {
+	pieza.x--;
+	if (colision(tablero, pieza)) pieza.x++;
+	dibujar();
+});
+botonMovil('right', () => {
+	pieza.x++;
+	if (colision(tablero, pieza)) pieza.x--;
+	dibujar();
+});
+botonMovil('down', () => {
+	moverAbajo();
+	ultimaCaida = Date.now();
+});
+botonMovil('rotate', () => {
+	const matrizRotada = rotar(pieza.matriz);
+	const anterior = pieza.matriz;
+	pieza.matriz = matrizRotada;
+	if (colision(tablero, pieza)) pieza.matriz = anterior;
+	dibujar();
 });
